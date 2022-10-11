@@ -5,10 +5,11 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in rspec_match_structure.gemspec
 gemspec
 
-gem "rake", "~> 13.0"
-
-gem "rspec", "~> 3.0"
-
-gem "rubocop", "~> 1.7"
-
+gem 'factory_bot_rails'
+gem 'rails', '~> 7.0.1'
+gem "rake"
+gem "rspec"
+gem 'rspec-collection_matchers'
+gem "rubocop"
 gem "simplecov"
+gem 'sqlite3'

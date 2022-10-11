@@ -32,6 +32,36 @@ module RSpec
           model = create(:"#{described_class.to_s.underscore}")
           expect { model.dup.save }.not_to raise_error ActiveRecord::RecordNotUnique
         end
+
+        it 'has correct "numericality" validations' do
+          numericality_columns = described_class.columns.select { |column| column.sql_type_metadata.precision&.nonzero? }
+          numericality_validators = described_class.validators.select { |validator| validator.is_a? ActiveModel::Validations::NumericalityValidator }
+
+          numericality_columns.each do |column|
+            attribute_sym = column.name.to_sym # TODO Don't assume that the attribute name is the same as the column name
+
+            next if (exclusions.include? column.name) || (exclusions.include? attribute_sym)
+
+            validator = numericality_validators.detect { |validator| validator.attributes.include? attribute_sym }
+
+            expect(validator).to be_truthy
+
+            precision = column.sql_type_metadata.precision
+
+            expect(precision).to be_truthy
+            expect(precision).to be > 0
+
+            scale = column.sql_type_metadata.scale || 0
+            integer_digits = precision - scale
+            max = 10 ** integer_digits
+            options = validator.options
+
+            expect(options).to have_key(:less_than)
+            expect(options[:less_than]).to be <= max
+            expect(options).to have_key(:greater_than)
+            expect(options[:greater_than]).to be >= -max
+          end
+        end
       end
     end
   end

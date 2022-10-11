@@ -1,27 +1,28 @@
 # frozen_string_literal: true
 
+require "active_support"
+require "rails"
+require "rspec"
+require "active_record"
+require "factory_bot_rails"
 require "rspec/auto_model_checks"
 
-RSpec.configure do |config|
-  # Enable flags like --only-failures and --next-failure
-  config.example_status_persistence_file_path = ".rspec_status"
+Dir[File.expand_path("../support/*.rb", __FILE__)].each { |f| require f }
+Dir[File.expand_path('../factories/*.rb', __FILE__)].each { |f| require f }
 
-  # Disable RSpec exposing methods globally on `Module` and `main`
-  config.disable_monkey_patching!
+RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
 
-  # If you need to load a schema in the tests:
-  # config.before(:suite) do
-  #   Schema.create
-  # end
+  Schema.create
 
-  # config.around(:each) do |example|
-  #   ActiveRecord::Base.transaction do
-  #     example.run
-  #     raise ActiveRecord::Rollback
-  #   end
-  # end
+  config.around(:each) do |example|
+    ActiveRecord::Base.transaction do
+      example.run
+      raise ActiveRecord::Rollback
+    end
+  end
 end

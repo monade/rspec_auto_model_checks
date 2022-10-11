@@ -9,17 +9,21 @@
 ## Installation
 
 ```ruby
-gem 'rspec_auto_model_checks'
+gem 'rspec_auto_model_checks', github: 'monade/rspec_auto_model_checks'
 ```
 
 ## Usage and Examples
 
-** TODO **
+Add check_validations! and/or validate_associations! to your model test
 
-## TODOs
-* Tests
-* Improve scope checks with params
-* Checks for boolean fields
+```ruby
+  RSpec.describe Order, type: :model do
+  check_validations!
+  validate_associations!
+end
+```
+
+
 
 ## License
 
