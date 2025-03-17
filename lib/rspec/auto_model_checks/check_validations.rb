@@ -21,7 +21,7 @@ module RSpec
             next unless association.is_a?(ActiveRecord::Reflection::BelongsToReflection) ||
                         association.is_a?(ActiveRecord::Reflection::HasOneReflection)
 
-            next if association.class_name == 'ActiveStorage::Attachment'
+            next if association.class_name == "ActiveStorage::Attachment"
 
             model.send("#{association.name}=", nil)
             expect { model.save! }.not_to raise_error ActiveRecord::StatementInvalid
@@ -34,11 +34,15 @@ module RSpec
         end
 
         it 'has correct "numericality" validations' do
-          numericality_columns = described_class.columns.select { |column| column.sql_type_metadata.precision&.nonzero? }
-          numericality_validators = described_class.validators.select { |validator| validator.is_a? ActiveModel::Validations::NumericalityValidator }
+          numericality_columns = described_class.columns.select do |column|
+            column.sql_type_metadata.precision&.nonzero?
+          end
+          numericality_validators = described_class.validators.select do |validator|
+            validator.is_a? ActiveModel::Validations::NumericalityValidator
+          end
 
           numericality_columns.each do |column|
-            attribute_sym = column.name.to_sym # TODO Don't assume that the attribute name is the same as the column name
+            attribute_sym = column.name.to_sym # TODO: Don't assume that the attribute name is the same as the column name
 
             next if (exclusions.include? column.name) || (exclusions.include? attribute_sym)
 
@@ -49,11 +53,11 @@ module RSpec
             precision = column.sql_type_metadata.precision
 
             expect(precision).to be_truthy
-            expect(precision).to be > 0
+            expect(precision).to be_positive
 
             scale = column.sql_type_metadata.scale || 0
             integer_digits = precision - scale
-            max = 10 ** integer_digits
+            max = 10**integer_digits
             options = validator.options
 
             expect(options).to have_key(:less_than)

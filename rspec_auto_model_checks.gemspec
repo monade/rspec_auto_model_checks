@@ -10,11 +10,11 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Mònade"]
   spec.email         = ["team@monade.io"]
 
-  spec.summary       = "Your gem short description."
-  spec.description   = "Your gem very long description here..."
+  spec.summary       = "A gem that helps runs some automated checks on models."
+  spec.description   = "A gem that helps runs some automated checks on models."
   spec.homepage      = "https://github.com/monade/rspec_auto_model_checks"
   spec.license       = "MIT"
-  spec.required_ruby_version = ">= 2.7"
+  spec.required_ruby_version = ">= 3.1"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
-  spec.add_dependency "activesupport", [">= 5", "< 8"]
+  spec.add_dependency "activesupport", [">= 5", "< 9"]
   spec.add_dependency "rspec", "~> 3"
   spec.add_development_dependency "rubocop"
 

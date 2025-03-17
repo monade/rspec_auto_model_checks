@@ -5,11 +5,22 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in rspec_match_structure.gemspec
 gemspec
 
-gem 'factory_bot_rails'
-gem 'rails', '~> 7.0.1'
+rails_version = ENV["CI_RAILS_VERSION"] || ">= 0.0"
+
+gem "factory_bot_rails"
+gem "rails", rails_version
 gem "rake"
 gem "rspec"
-gem 'rspec-collection_matchers'
+gem "rspec-collection_matchers"
 gem "rubocop"
 gem "simplecov"
-gem 'sqlite3'
+if ["~> 8.0.0", ">= 0", ">= 0.0"].include?(rails_version)
+  gem "sqlite3", "~> 2"
+else
+  gem "sqlite3", "~> 1.7.3"
+end
+gem "base64"
+gem "benchmark"
+gem "bigdecimal"
+gem "logger"
+gem "mutex_m"

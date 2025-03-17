@@ -58,6 +58,5 @@ module Schema
         t.integer "price", null: false
       end
     end
-
   end
 end
