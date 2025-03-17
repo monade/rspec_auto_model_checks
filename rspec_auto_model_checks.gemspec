@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
-  spec.add_dependency "activesupport", [">= 5", "< 9"]
+  spec.add_dependency "activesupport", [">= 6", "< 9"]
   spec.add_dependency "rspec", "~> 3"
   spec.add_development_dependency "rubocop"
 

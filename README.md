@@ -1,8 +1,8 @@
-![Tests](fill with test workflow url)
-[![Gem Version](fill with version svg url)] (fill with version url)
+![Tests](https://github.com/monade/rspec_auto_model_checks/actions/workflows/test.yml/badge.svg)
+[![Gem Version](https://badge.fury.io/rb/rspec_auto_model_checks.svg)](https://badge.fury.io/rb/rspec_auto_model_checks)
 
 # RSpec Auto-model checks
-** TODO **
+A gem that provides a set of RSpec matchers to automatically check model validations and associations.
 
 ** Gem in development, DON'T USE IT **
 
@@ -23,8 +23,6 @@ Add check_validations! and/or validate_associations! to your model test
 end
 ```
 
-
-
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
@@ -32,8 +30,8 @@ The gem is available as open source under the terms of the [MIT License](https:/
 About Monade
 ----------------
 
-![monade](https://monade.io/wp-content/uploads/2021/06/monadelogo.png)
+![monade](https://monade.io/wp-content/uploads/2023/02/logo-monade.svg)
 
-your_gem_name is maintained by [mònade srl](https://monade.io/en/home-en/).
+active_queryable is maintained by [mònade srl](https://monade.io).
 
-We <3 open source software. [Contact us](https://monade.io/en/contact-us/) for your next project!
+We <3 open source software. [Contact us](https://monade.io) for your next project!
